@@ -1,304 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mjoma Internet Café</title>
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      margin: 0;
-      background: #ffffff;
-      color: #333;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mjoma Internet Café</title>
 
-    header {
-      background: #ffffff;
-      text-align: center;
-      padding: 2rem;
-    }
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* -----------------------------
+   GLOBAL
+------------------------------ */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: white;
+}
+
+/* -----------------------------
+   HEADER LOGO
+------------------------------ */
+header {
+    text-align: center;
+    padding: 20px 0;
+}
 .logo {
-  width: 1000px;
-  height: auto;
-  display: block;
-  margin: 0 auto 1rem auto;
+    width: 1000px;
+    max-width: 100%;
+    height: auto;
 }
-      /* Hero slideshow */
-.hero {
-  color: white;
-  padding: 4rem 2rem;
-  text-align: center;
-  position: relative;
-  background-size: cover;
-  animation: bgSlideshow 18s infinite;
+
+/* -----------------------------
+   SLIDESHOW (INFINITE LOOP)
+------------------------------ */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    background: black;
 }
-    @keyframes bgSlideshow {
-  0% {
-    background: url('photo1.jpg') no-repeat center center;
-    background-size: cover;
-  }
-  33% {
-    background: url('photo2.png') no-repeat center center;
-    background-size: cover;
-  }
-  66% {
-    background: url('photo3.png') no-repeat center center;
-    background-size: cover;
-  }
-  100% {
-    background: url('photo1.jpg') no-repeat center center;
-    background-size: cover;
-  }
+
+.slides {
+    display: flex;
+    height: 100%;
+    transition: transform 1s ease-in-out;
 }
-    }    }
-    .hero::after {
-      content: "";
-      display: block;
-      background: #ffffff;
-      height: 80px;
-      border-top-left-radius: 100% 40px;
-      border-top-right-radius: 100% 40px;
-      margin-top: -40px;
-    }
 
-    nav {
-      background: #004080;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: white;
-      padding: 1rem 1.5rem;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    nav a:hover {
-      background: #0066cc;
-    }
+.slide {
+    min-width: 100%;
+    height: 100%;
+}
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-    section {
-      padding: 3rem 2rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-    h2 {
-      color: #004080;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+/* -----------------------------
+   HERO TEXT
+------------------------------ */
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
+    text-align: center;
+    z-index: 2;
+}
+.hero-text h1 { font-size: 2.5rem; }
+.hero-text p { font-size: 1.1rem; }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .flip-card {
-      background: transparent;
-      perspective: 1000px;
-    }
-    .flip-card-inner {
-      position: relative;
-      width: 100%;
-      height: 250px;
-      text-align: center;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
-    .flip-card:hover .flip-card-inner {
-      transform: rotateY(180deg);
-    }
-    .flip-card-front, .flip-card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
-    .flip-card-front {
-      background: #f9f9f9;
-      color: #004080;
-    }
-    .flip-card-front i {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .flip-card-back {
-      background: #004080;
-      color: white;
-      transform: rotateY(180deg);
-    }
+/* -----------------------------
+   NAVIGATION
+------------------------------ */
+nav {
+    background: #004080;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+nav a {
+    color: white;
+    padding: 12px 18px;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav a:hover { background: #0066cc; }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-    .gallery img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
+/* -----------------------------
+   SERVICE BOX
+------------------------------ */
 
-    footer {
-      background: #0066cc;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 2rem;
-    }
-    footer p {
-      margin: 0.5rem 0;
-      font-size: 1rem;
-    }
-    footer i {
-      margin-right: 8px;
-      color: #ffcc00;
-    }
-  </style>
+#service-box {
+    width: 92%;
+    max-width: 900px;
+    margin: 35px auto;
+
+    background:
+        linear-gradient(
+            rgba(40, 40, 40, 0.50),
+            rgba(30, 60, 110, 0.55)
+        ),
+        url("photo1.png");
+    background-size: cover;
+    background-position: center;
+
+    padding: 35px;
+    border-radius: 12px;
+    display: none;
+    color: #ffffff;
+    text-align: center;
+    backdrop-filter: blur(3px);
+}
+
+#service-box h2 {
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #FFD700;
+}
+
+/* ✅ REMOVE BULLETS */
+ul.service-list {
+    text-align: left;
+    max-width: 350px;
+    margin: auto;
+    list-style-type: none;
+    padding-left: 0;
+}
+ul.service-list li {
+    margin-bottom: 8px;
+}
+
+/* -----------------------------
+   ABOUT
+------------------------------ */
+#about {
+    padding: 50px 20px;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+#about h2 {
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    font-size: 2rem;
+}
+
+/* -----------------------------
+   CONTACT
+------------------------------ */
+#contact {
+    background: #f5f5f5;
+    padding: 50px 20px;
+}
+#contact h2 {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+}
+form {
+    max-width: 600px;
+    margin: auto;
+}
+input, textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #777;
+}
+button {
+    width: 100%;
+    padding: 14px;
+    background: #004080;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 6px;
+}
+button:hover { background: #0066cc; }
+
+/* -----------------------------
+   FOOTER
+------------------------------ */
+footer {
+    background: #0066cc;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+footer a {
+    color: white;
+    text-decoration: underline;
+}
+
+/* -----------------------------
+   WHATSAPP FLOAT BUTTON
+------------------------------ */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25D366;
+    color: white;
+    padding: 18px;
+    font-size: 2rem;
+    border-radius: 50%;
+    z-index: 999;
+}
+
+/* -----------------------------
+   RESPONSIVE BREAKPOINTS
+------------------------------ */
+@media (max-width: 768px) {
+    .hero-text h1 { font-size: 2rem; }
+    .hero-text p { font-size: 1rem; }
+    .slideshow-container { height: 320px; }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 { font-size: 1.6rem; }
+    .slideshow-container { height: 260px; }
+    #service-box { padding: 25px; }
+}
+</style>
 </head>
-<body>
-  <header>
-    <img src="mjoma-logo.png" alt="Mjoma Internet Café Logo" class="logo">
-    </header>
 
-<div class="hero">
-  <h1>Welcome to Mjoma Internet Café</h1>
-  <p>Fast, reliable, and professional services</p>
+<body>
+
+<!-- ✅ HEADER -->
+<header>
+    <img src="mjoma-logo.png" class="logo">
+</header>
+
+<!-- ✅ SLIDESHOW -->
+<div class="slideshow-container">
+    <div class="slides" id="slides">
+        <div class="slide"><img src="photo1.png"></div>
+        <div class="slide"><img src="photo2.png"></div>
+        <div class="slide"><img src="mg src="photo1.png"></div>
+    </div>
+
+    <div class="hero-text">
+        <h1>Welcome to Mjoma Internet Café</h1>
+        <p>Fast, reliable, and professional services</p>
+    </div>
 </div>
 
-  <nav>
-    <a href="#internet">Internet</a>
-    <a href="#typing">Typing</a>
-    <a href="#printing">Printing</a>
-    <a href="#scanning">Scanning</a>
-    <a href="#photos">Photos</a>
-    <a href="#lamination">Lamination</a>
-    <a href="#emailfax">Email & Fax</a>
-  </nav>
+<!-- ✅ MENU -->
+<nav>
+    <a onclick="showService('typing')">Typing</a>
+    <a onclick="showService('printing')">Printing</a>
+    <a onclick="showService('photos')">Photos</a>
+    <a onclick="showService('scanning')">Scanning</a>
+    <a onclick="showService('lamination')">Lamination</a>
+    <a onclick="showService('emailfax')">Email / Fax</a>
+    <a onclick="showService('internet')">Internet</a>
+</nav>
 
-  <section id="services">
-    <h2>Our Services</h2>
-    <div class="grid">
-      <div class="flip-card" id="internet">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <i class="fas fa-globe"></i>
-            <h3>Internet</h3>
-          </div>
-          <div class="flip-card-back">
-            <p>Use Internet for Jobs, Bursaries, Research, and more.</p>
-          </div>
-        </div>
-      </div>
-      <div class="flip-card" id="typing">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <i class="fas fa-keyboard"></i>
-            <h3>Typing</h3>
-          </div>
-          <div class="flip-card-back">
-            <p>CVs, Memos, Flyers, Posters, Invoices, Quotes, Receipts, Programs.</p>
-          </div>
-        </div>
-      </div>
-      <div class="flip-card" id="printing">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <i class="fas fa-print"></i>
-            <h3>Printing</h3>
-          </div>
-          <div class="flip-card-back">
-            <p>Colour & Black/White printing on A5, A4, or A3.</p>
-          </div>
-        </div>
-      </div>
-      <div class="flip-card" id="scanning">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <i class="fas fa-file-import"></i>
-            <h3>Scanning</h3>
-          </div>
-          <div class="flip-card-back">
-            <p>Scan & Save to Flash Drive, Cellphone, or Laptop.</p>
-          </div>
-        </div>
-      </div>
-      <div class="flip-card" id="photos">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <i class="fas fa-camera"></i>
-            <h3>Photos</h3>
-          </div>
-          <div class="flip-card-back">
-            <p>Quality Licence, Passport & ID Photos.</p>
-          </div>
-        </div>
-      </div>
-      <div class="flip-card" id="lamination">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <i class="fas fa-layer-group"></i>
-            <h3>Lamination</h3>
-          </div>
-          <div class="flip-card-back">
-            <p>Laminate your important documents (A5, A4, A3).</p>
-          </div>
-        </div>
-      </div>
-      <div class="flip-card" id="emailfax">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <i class="fas fa-envelope"></i>
-            <h3>Email & Fax</h3>
-          </div>
-          <div class="flip-card-back">
-            <p>Email / Fax your documents quickly.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ✅ SERVICE BOX -->
+<div id="service-box"></div>
 
+<!-- ✅ ABOUT -->
+<section id="about">
+    <h2>About Us</h2>
+    <p>Mjoma Internet Café provides fast, affordable and high-quality services to our community.</p>
+</section>
+
+<!-- ✅ CONTACT -->
+<section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="5" placeholder="Your Message"></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<!-- ✅ FOOTER -->
 <footer>
-  <p style="font-size:0.9rem;">
-    <a href="tel:0723974980" style="color:white; text-decoration:none;">
-      📞 Call: 072 397 4980
-    </a>
-  </p>
-  <p style="font-size:0.9rem;">
-    ✉ 
-    <a href="mailto:mjomainternetcafe@gmail.com" style="color:white; text-decoration:none;">
-      mjomainternetcafe@gmail.com
-    </a>
-  </p>
-  <p style="font-size:0.9rem;">
-    <i class="fas fa-map-marker-alt"></i>
-    <a href="https://maps.google.com/?q=3241 Section H, Ekangala, Gauteng" 
-       target="_blank" 
-       style="color:white; text-decoration:none;">
-       3241 Section H, Ekangala, Gauteng
-    </a>
-  </p>
-  <p style="font-size:0.9rem;">
-    <a href="https://wa.me/27723974980" target="_blank" style="color:#25D366; text-decoration:none;">
-      <i class="fab fa-whatsapp"></i> WhatsApp Us
-    </a>
-  </p>
-  <p style="font-size:0.8rem;">&copy; 2014 Mjoma Internet Café. All rights reserved.</p>
+    <p><i class="fas fa-phone"></i> <a href="tel:0723974980">Call: 072 397 4980</a></p>
+    <p><i class="fas fa-envelope"></i> <a href="mailto:mjomainternetcafe@gmail.com">mjomainternetcafe@gmail.com</a></p>
+    <p><i class="fas fa-map-marker-alt"></i> <a href="https://maps.google.com/?q=3241 Section H, Ekangala" target="_blank">3241 Section H, Ekangala, Gauteng</a></p>
+    <p>&copy; 2026 Mjoma Internet Café. All rights reserved.</p>
 </footer>
+
+<!-- ✅ WHATSAPP BUTTON -->
+<a href="https://wa.me/27723974980" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+/* ✅ SLIDESHOW */
+let index = 0;
+const slides = document.getElementById("slides");
+const totalSlides = 5;
+
+function slideShow() {
+    index++;
+    slides.style.transition = "transform 1s ease-in-out";
+    slides.style.transform = "translateX(" + (-index * 100) + "%)";
+
+    if (index === totalSlides - 1) {
+        setTimeout(() => {
+            slides.style.transition = "none";
+            slides.style.transform = "translateX(0%)";
+            index = 0;
+        }, 1000);
+    }
+}
+setInterval(slideShow, 4000);
+
+/* ✅ SERVICE BOX FUNCTION */
+function showService(type) {
+    const box = document.getElementById("service-box");
+    box.style.display = "block";
+
+    let icon = "", title = "", list = "";
+
+    if (type === "typing") {
+        icon = "fa-keyboard"; title = "Typing Services";
+        list = `<li>CVs</li><li>Flyers</li><li>Memos</li><li>Posters</li><li>Invoices</li><li>Quotes</li><li>Receipts</li><li>Programs</li>`;
+    }
+    if (type === "printing") {
+        icon = "fa-print"; title = "Printing Services";
+        list = `<li>Black & White Printing</li><li>Colour Printing</li><li>Documents</li><li>Forms</li><li>School Work</li>`;
+    }
+    if (type === "photos") {
+        icon = "fa-camera"; title = "Photo Services";
+        list = `<li>ID Photos</li><li>Passport Photos</li><li>Licence Photos</li>`;
+    }
+    if (type === "scanning") {
+        icon = "fa-scanner-image"; title = "Scanning Services";
+        list = `<li>Scan Documents</li><li>Save as PDF</li><li>Email Scanned Files</li>`;
+    }
+    if (type === "lamination") {
+        icon = "fa-layer-group"; title = "Lamination Services";
+        list = `<li>Certificates</li><li>IDs</li><li>Important Documents</li>`;
+    }
+    if (type === "emailfax") {
+        icon = "fa-envelope"; title = "Email & Fax";
+        list = `<li>Send Emails</li><li>Send Attachments</li><li>Receive Faxes</li><li>Send Faxes</li>`;
+    }
+    if (type === "internet") {
+        icon = "fa-globe"; title = "Internet Services";
+        list = `<li>Online Applications</li><li>Jobs</li><li>Bursaries</li><li>Research</li>`;
+    }
+
+    box.innerHTML = `
+        <i class="fa-solid ${icon} service-icon"></i>
+        <h2>${title}</h2>
+        <ul class="service-list">${list}</ul>
+    `;
+}
+</script>
+
+</body>
+</html>
