@@ -642,7 +642,11 @@ function openService(type) {
 function showServiceGrid() {
     document.getElementById("service-details").style.display = "none";
     document.getElementById("service-grid").style.display = "grid";
-    document.getElementById("services").scrollIntoView({ behavior: "smooth" });
+    document.getElementById("service-details").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+});
+
 }
 
 /* ✅ Go Home */
