@@ -1,215 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mjoma Internet Café</title>
 
-<!-- Font Awesome -->
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
-/* ---------------------------------------------------
-   GLOBAL
---------------------------------------------------- */
+/* ================= GLOBAL ================= */
 body {
     margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
     background: #ffffff;
     color: #333;
-    overflow-x: hidden;
 }
 h2 {
     text-transform: uppercase;
-    letter-spacing: 1px;
     text-align: center;
-    margin-top: 0;
+    margin: 0;
 }
-p { margin: 0; }
+.hidden { display: none; }
 
-/* Fade‑In Animation */
-.fade-in { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-
-/* ---------------------------------------------------
-   LOGO BAR
---------------------------------------------------- */
+/* ================= LOGO ================= */
 .top-logo-bar {
     text-align: center;
-    padding: 25px 0;
-    background: white;
-    border-bottom: 3px solid #e8f4f7;
+    padding: 20px 0;
 }
 .top-logo-bar img {
     width: 1000px;
     max-width: 95%;
 }
 
-/* ---------------------------------------------------
-   SLIDESHOW
---------------------------------------------------- */
+/* ================= MENU ================= */
+nav {
+    background: #004d66;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 14px 0;
+}
+nav a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+nav a:hover { color: #00eaff; }
+
+/* ================= SLIDESHOW ================= */
 .slideshow-container {
     position: relative;
     width: 100%;
-    height: 380px;
+    height: 85vh;
+    background: black;
     overflow: hidden;
-    background: #000;
 }
 .slide {
     position: absolute;
     width: 100%;
     height: 100%;
+    background-size: cover;
+    background-position: center;
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity .6s ease;
 }
 .slide.active { opacity: 1; }
-.slide img {
-    width: 100%;
+
+
+.slide.multi {
+    display: flex;
+}
+.slide.multi img {
+    width: 60%;
     height: 100%;
     object-fit: cover;
 }
 
-/* ---------------------------------------------------
-   HERO TEXT
---------------------------------------------------- */
-.hero-text {
+.slide-arrow {
     position: absolute;
-    top: 45%;
-    left: 6%;
+    top: 50%;
+    font-size: 50px;
+    color: white;
+    cursor: pointer;
     transform: translateY(-50%);
-    color: white;
-    text-shadow: 2px 2px 10px black;
-    z-index: 10;
+    padding: 10px;
 }
-.hero-text h1 { margin: 0; font-size: 3.2rem; }
-.hero-text p { font-size: 1.2rem; }
+.left-arrow { left: 20px; }
+.right-arrow { right: 20px; }
 
-/* ---------------------------------------------------
-   CURVED SEPARATOR
---------------------------------------------------- */
-.curve-separator {
-    width: 100%;
-    height: 80px;
-    background: linear-gradient(to right,#e8f4f7,#d6eef2,#e8f4f7);
-    clip-path: ellipse(70% 100% at 50% 0%);
-    margin: 40px 0;
-}
-
-/* ---------------------------------------------------
-   MENU
---------------------------------------------------- */
-nav {
-    background: #004d66;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-nav a {
-    color: white;
-    padding: 15px 25px;
-    font-weight: bold;
-    text-decoration: none;
-}
-nav a:hover { background: #007a99; }
-
-/* ---------------------------------------------------
-   GLOWING BAR (UNDER TITLES)
---------------------------------------------------- */
-.glowing-bar {
-    width: 120px;
-    height: 6px;
-    margin: 10px auto 30px auto;
-    border-radius: 10px;
-    background: linear-gradient(90deg,#0097b2,#00d4ff,#0097b2);
-    background-size: 300% 100%;
-    animation: glow 4s linear infinite;
-}
-@keyframes glow {
-    0% { background-position: 0%; }
-    100% { background-position: 300%; }
-}
-
-/* ---------------------------------------------------
-   TEAL FRAME BLOCKS
---------------------------------------------------- */
+/* ================= FRAME ================= */
 .block-framed {
     border: 3px solid #007a99;
-    border-radius: 14px;
-    padding: 50px 28px;
-    margin: 50px auto;
-    background: white;
+    border-radius: 16px;
+    padding: 40px 25px;
     max-width: 1100px;
-    position: relative;
+    margin: 40px auto;
 }
 
-/* ---------------------------------------------------
-   ABOUT US SECTION
---------------------------------------------------- */
-.about-block {
-    position: relative;
-    min-height: 500px;
-    overflow: hidden;
-}
-
-/* ✅ Clear full background image */
-.about-watermark {
-    background: url("photo1.png") center center no-repeat;
-    background-size: cover;
-    opacity: 1;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-/* ✅ White readable content box */
-.about-text-box {
-    position: relative;
-    z-index: 3;
-    max-width: 750px;
-    margin: 20px auto 0 auto;
-    background: rgba(255, 255, 255, 0.92);
-    padding: 25px 30px;
-    border-radius: 14px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-
-/* ✅ Text inside About box */
-.about-text-box p {
-    font-size: 1.25rem;
-    color: #003644;
-    line-height: 1.8;
-}
-
-/* ✅ Final line enlarged */
-.proud-text {
-    font-size: 1.55rem;
-    font-weight: 700;
-    color: #004d66;
-    margin-top: 10px;
-}
-
-
-about-text-box {
-    position: relative;
-    z-index: 3;
-    max-width: 750px;
-    margin: 20px auto 0 auto;
-    background: rgba(255, 255, 255, 0.75); /* ✅ LIGHTER box */
-    padding: 25px 30px;
-    border-radius: 14px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-
-/* ---------------------------------------------------
-   SERVICES GRID
---------------------------------------------------- */
+/* ================= SERVICES ================= */
 .service-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
@@ -225,145 +115,150 @@ about-text-box {
     overflow: hidden;
 }
 .service-box::before {
-    content: "";
-    position: absolute;
-    width: 160%;
-    height: 160%;
-    top: -25%;
-    left: -25%;
-    background: radial-gradient(circle,#e8f4f7 0%,#d6eef2 60%,transparent 100%);
+    content:"";
+    position:absolute;
+    width:160%;
+    height:160%;
+    top:-25%;
+    left:-25%;
+    background:radial-gradient(circle,#e8f4f7 0%,#d6eef2 60%,transparent 100%);
 }
-.service-box:hover { background: #c6e4ee; }
 .service-box * { position: relative; z-index: 2; }
+.service-box:hover { background:#c6e4ee; }
 
-/* ---------------------------------------------------
-   SERVICE DETAILS
---------------------------------------------------- */
 #service-details {
     display: none;
-    background: #e9f7fa;
-    padding: 40px;
-    border-radius: 12px;
-    max-width: 850px;
-    margin: auto;
-    text-align: center;
+    background:#e9f7fa;
+    padding:40px;
+    border-radius:12px;
+    max-width:850px;
+    margin:30px auto;
+    text-align:center;
 }
 
 .back-btn {
-    background: #004d66;
-    color: white;
-    padding: 10px 18px;
-    display: inline-block;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    font-weight: bold;
+    background:#004d66;
+    color:white;
+    padding:10px 18px;
+    display:inline-block;
+    border-radius:8px;
+    cursor:pointer;
+    margin-bottom:20px;
+    font-weight:bold;
 }
 
-/* ✅ TICKS ONLY (NO BULLETS) */
-#service-details ul,
-.mission-list {
-    list-style: none;
-    padding: 0;
-    max-width: 650px;
-    margin: auto;
-}
-#service-details li::before,
-.mission-list li::before {
-    content: "✔ ";
-    color: #007a99;
-    font-weight: bold;
-}
-#service-details li,
-.mission-list li {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
+#service-details ul {
+    list-style:none;
+    padding:0;
+    max-width:650px;
+    margin:auto;
 }
 
-/* ---------------------------------------------------
-   VISION SECTION (CENTERED + TEAL UNDERLINE)
---------------------------------------------------- */
-#vision .vision-text {
+#service-details li.no-tick::before {
+    content: "";
+    margin-right: 0;
+}
+
+#service-details li::before {
+    content:"✔ ";
+    color:#007a99;
+    font-weight:bold;
+}
+#service-details li {
+    margin-bottom:10px;
+    font-size:1.2rem;
+}
+
+/* ================= SECTION DIVIDER (NEW) ================= */
+.section-divider {
     width: 100%;
-    max-width: 820px;
-    margin: 0 auto 40px auto !important;
-    text-align: center !important;
-    font-size: 1.2rem;
-    line-height: 1.7;
-    display: block !important;
+    max-width: 850px;
+    height: 2px;
+    margin: 50px auto 40px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        #007a99,
+        transparent
+    );
 }
 
-/* ✅ teal underline */
-.teal-underline {
-    width: 160px;
-    height: 4px;
-    background: #007a99;
-    margin: 8px auto 35px auto;
-    border-radius: 3px;
-}
-
-/* ---------------------------------------------------
-   CONTACT
---------------------------------------------------- */
-.contact-inner {
+/* ================= ABOUT ================= */
+.glossy-box {
+    background: rgba(255,255,255,0.95);
+    border-radius: 18px;
+    padding: 50px 60px;
     text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+}
+.about-main {
+    font-size: 1.45rem;
+    font-weight: 700;
+}
+.about-sub {
+    font-size: 1.3rem;
+    margin-top: 10px;
+}
+.about-heading {
+    margin-top: 30px;
+    font-size: 1.35rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #004d66;
+}
+.about-vision {
     font-size: 1.25rem;
 }
+.slogan {
+    margin-top: 40px;
+    font-family: "Times New Roman", Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+}
+
+/* ================= REVIEWS ================= */
+.review-box {
+    background:#f1f9fc;
+    border-radius:12px;
+    padding:25px;
+    text-align:center;
+    margin-top:25px;
+}
+
+/* ================= CONTACT ================= */
+.contact-inner {
+    text-align:center;
+    font-size:1.2rem;
+}
 .contact-inner a {
-    color: #004d66;
-    text-decoration: none;
-    font-weight: 600;
+    color:#004d66;
+    font-weight:bold;
+    text-decoration:none;
 }
+.contact-inner a:hover { text-decoration:underline; }
 
-/* ---------------------------------------------------
-   FOOTER
---------------------------------------------------- */
+/* ================= FOOTER ================= */
 footer {
-    background: #004d66;
-    color: white;
-    padding: 25px;
-    text-align: center;
+    background:#004d66;
+    color:white;
+    text-align:center;
+    padding:18px;
 }
 
-/* ---------------------------------------------------
-   WHATSAPP FLOATING BUTTON
---------------------------------------------------- */
+/* ================= WHATSAPP ================= */
 .whatsapp-float {
     position: fixed;
-    bottom: 25px;
-    left: 25px;
-    background: #25D366;
-    color: white;
-    padding: 14px;
-    border-radius: 50%;
-    font-size: 2rem;
-    z-index: 999;
-}
-
-/* ---------------------------------------------------
-   BACK TO TOP BUTTON
---------------------------------------------------- */
-.back-to-top {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: #007a99;
-    color: white;
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.4rem;
-    cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
-    transition: .4s;
-}
-.back-to-top.show {
-    opacity: 1;
-    pointer-events: auto;
+    bottom:25px;
+    left:25px;
+    background:#25D366;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-size:2.2rem;
 }
 
 </style>
@@ -371,288 +266,223 @@ footer {
 
 <body>
 
-<!-- ✅ LOGO BAR -->
+<!-- LOGO -->
 <div class="top-logo-bar">
-    <img src="mjoma-logo.png">
+    <img src="mjoma-logo.png" alt="Mjoma Internet Café">
 </div>
 
-<!-- ✅ SLIDESHOW -->
-<div class="slideshow-container fade-in">
-
-    <div class="slide active">
-        <img src="hero1.png">
-    </div>
-
-    <div class="slide">
-        <img src="hero2.png">
-    </div>
-
-    <div class="slide">
-        <img src="hero3.png">
-    </div>
-
-    <div class="slide">
-        <img src="hero4.png">
-    </div>
-
-    <div class="slide">
-        <img src="hero5.png">
-    </div>
-
-    <div class="hero-text">
-        <h1>Mjoma Internet Café</h1>
-        <p>Fast, Reliable & Professional</p>
-    </div>
-
-</div>
-
-<div class="curve-separator"></div>
-
-<!-- ✅ MENU -->
+<!-- MENU -->
 <nav>
-    <a onclick="goHome()">Home</a>
-    <a onclick="showServiceGrid()">Services</a>
-    <a href="#about">About</a>
-    <a href="#vision">Vision</a>
-    <a href="#contact">Contact</a>
+    <a onclick="showSection('home')">Home</a>
+    <a onclick="showSection('services')">Services</a>
+    <a onclick="showSection('about')">About Us</a>
+    <a onclick="showSection('contact')">Contact</a>
 </nav>
 
-<!-- ✅ SERVICE DETAILS -->
-<div id="service-details" class="fade-in"></div>
-
-<!-- ✅ SERVICES -->
-<div class="block-framed fade-in">
-    <h2>Our Services</h2>
-    <div class="glowing-bar"></div>
-
-<section id="services">
-
-    <div id="service-grid" class="service-grid">
-
-        <div class="service-box" onclick="openService('typing')">
-            <i class="fa-solid fa-keyboard"></i><p>Typing</p>
-        </div>
-
-        <div class="service-box" onclick="openService('printing')">
-            <i class="fa-solid fa-print"></i><p>Printing</p>
-        </div>
-
-        <div class="service-box" onclick="openService('photos')">
-            <i class="fa-solid fa-camera"></i><p>Photos</p>
-        </div>
-
-        <div class="service-box" onclick="openService('scanning')">
-            <i class="fa-solid fa-scanner-image"></i><p>Scanning</p>
-        </div>
-
-        <div class="service-box" onclick="openService('lamination')">
-            <i class="fa-solid fa-layer-group"></i><p>Lamination</p>
-        </div>
-
-        <div class="service-box" onclick="openService('emailfax')">
-            <i class="fa-solid fa-envelope"></i><p>Email / Fax</p>
-        </div>
-
-        <div class="service-box" onclick="openService('internet')">
-            <i class="fa-solid fa-globe"></i><p>Internet</p>
-        </div>
-
-        <div class="service-box" onclick="openService('others')">
-            <i class="fa-solid fa-list"></i><p>Other Services</p>
-        </div>
-
-    </div>
-
-</section>
+<!-- HOME -->
+<div id="home">
+    <div class="slideshow-container">
+        <div class="slide active" style="background-image:url('hero1.png')"></div>
+        <div class="slide" style="background-image:url('hero2.png')"></div>
+        <div class="slide" style="background-image:url('hero3.png')"></div>
+ 	<div class="slide" style="background-image:url('hero4.png')"></div>
+ 	<div class="slide" style="background-image:url('hero5.png')"></div>
+	
+<div class="slide multi">
+    <img src="hero6.png" alt="">
+    <img src="hero7.png" alt="">
+    <img src="hero8.png" alt="">
 </div>
 
-<div class="block-framed fade-in about-block">
-
-    <div class="about-watermark"></div>
-
-    <div class="about-text-box">
-        <h2 class="section-header">About Us</h2>
-        <div class="glowing-bar"></div>
-
-        <p>
-            Mjoma Internet Café provides high‑quality digital services to Ekangala and surrounding communities.
-        </p>
-
-        <br>
-
-        <p>
-            We support individuals, businesses and students with reliable, affordable digital communication services.
-        </p>
-
-        <br>
-
-        <p class="proud-text">
-            We are proud to serve our community.
-        </p>
+        <div class="slide-arrow left-arrow" onclick="prevSlide()">❮</div>
+        <div class="slide-arrow right-arrow" onclick="nextSlide()">❯</div>
     </div>
-
 </div>
-<div class="curve-separator"></div>
 
-<!-- ✅ VISION + MISSION -->
-<div class="block-framed fade-in" id="vision">
+<!-- SERVICES -->
+<div id="services" class="hidden block-framed">
+<h2>Our Services</h2>
 
-    <h2>Our Vision</h2>
-    <div class="glowing-bar"></div>
+<div id="service-grid" class="service-grid">
+    <div class="service-box" onclick="openService('typing')"><i class="fa fa-keyboard"></i><p>Typing</p></div>
+    <div class="service-box" onclick="openService('printing')"><i class="fa fa-print"></i><p>Printing</p></div>
+    <div class="service-box" onclick="openService('photos')"><i class="fa fa-camera"></i><p>Photos</p></div>
+    <div class="service-box" onclick="openService('scanning')"><i class="fa fa-scanner-image"></i><p>Scanning</p></div>
+    <div class="service-box" onclick="openService('lamination')"><i class="fa fa-layer-group"></i><p>Lamination</p></div>
+    <div class="service-box" onclick="openService('emailfax')"><i class="fa fa-envelope"></i><p>Email / Fax</p></div>
+    <div class="service-box" onclick="openService('internet')"><i class="fa fa-globe"></i><p>Internet</p></div>
+    <div class="service-box" onclick="openService('others')"><i class="fa fa-list-check"></i><p>Other Services</p></div>
+</div>
 
-    <p class="vision-text">
-        To be the preferred digital and communication services provider in our community.
+<div id="service-details"></div>
+
+<!-- ✅ NEW DIVIDER -->
+<div class="section-divider"></div>
+
+<!-- REVIEWS -->
+<h2>Google Reviews</h2>
+<div class="review-box">
+    ⭐⭐⭐⭐⭐ <strong>4.7 / 5</strong><br>
+    “Excellent service and very professional.”<br>
+    “Fast and reliable internet services.”
+    <br><br>
+    <a href="https://maps.app.goo.gl/FvKcH6tpE4KUqnuE7" target="_blank">
+        Read all Google Reviews
+    </a>
+</div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="hidden block-framed">
+<h2>About Us, Vision & Mission</h2>
+<div class="glossy-box">
+    <p class="about-main">
+        Since 2014, Mjoma Internet Café provides high‑quality services to Ekangala and surrounding communities.
     </p>
-    <div class="teal-underline"></div>
-
-    <h2>Our Mission</h2>
-    <div class="glowing-bar"></div>
-
-    <ul class="mission-list">
-        <li>Deliver fast and reliable service.</li>
-        <li>Empower our community digitally.</li>
-        <li>Assist businesses with printing & ICT.</li>
-        <li>Maintain excellent customer service.</li>
+    <p class="about-sub">
+        We support individuals, businesses and students with reliable, affordable services.
+    </p>
+    <hr>
+    <p class="about-heading">Vision</p>
+    <p class="about-vision">To be the preferred digital and communication services provider in our community.</p>
+    <hr>
+    <p class="about-heading">Mission</p>
+    <ul style="list-style:none;padding:0">
+        <li>✔ Deliver fast and reliable service</li>
+        <li>✔ Assist our community with digital services</li>
     </ul>
-
+    <p class="slogan">We are proud to serve our community</p>
+</div>
 </div>
 
-<div class="curve-separator"></div>
-
-<!-- ✅ CONTACT -->
-<div class="block-framed fade-in" id="contact">
-
-    <h2 class="section-header">Contact Us</h2>
-    <div class="glowing-bar"></div>
-
-    <div class="contact-inner">
-
-        <p><i class="fa-solid fa-phone"></i>
-            <a href="tel:+27723974980">+27 72 397 4980</a>
-        </p>
-
-        <p><i class="fa-solid fa-envelope"></i>
-            <a href="mailto:mjomainternetcafe@gmail.com">
-                mjomainternetcafe@gmail.com
-            </a>
-        </p>
-
-        <p><i class="fa-solid fa-map-marker-alt"></i>
-            <a href="https://maps.google.com/?q=3241 Section H, Ekangala" target="_blank">
-                3241 Section H, Ekangala, Gauteng
-            </a>
-        </p>
-
-    </div>
+<!-- CONTACT -->
+<div id="contact" class="hidden block-framed">
+<h2>Contact Us</h2>
+<div class="glossy-box">
+<div class="contact-inner">
+<p><i class="fa fa-phone"></i> <a href="tel:0649923725">064 992 3725</a></p>
+<p><i class="fa fa-envelope"></i> <a href="mailto:mjomainternetcafe@gmail.com">mjomainternetcafe@gmail.com</a></p>
+<p><i class="fa fa-map-marker-alt"></i>
+<a href="https://www.google.com/maps?q=3241+Section+H,+Ekangala" target="_blank">
+3241 Section H, Ekangala
+</a>
+</p>
+</div>
+</div>
 </div>
 
-<!-- ✅ FOOTER -->
-<footer>
-    © 2014 Mjoma Internet Café — All Rights Reserved
-</footer>
+<footer>© 2014 Mjoma Internet Café — All Rights Reserved</footer>
 
-<!-- ✅ WHATSAPP BUTTON -->
-<a href="https://wa.me/27723974980" class="whatsapp-float" target="_blank">
+<!-- WHATSAPP -->
+<a href="https://wa.me/27649923725" class="whatsapp-float" target="_blank">
     <i class="fab fa-whatsapp"></i>
 </a>
 
-<!-- ✅ BACK TO TOP BUTTON -->
-<div id="backToTop" class="back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-</div>
-
 <script>
+function showSection(id){
+    ["home","services","about","contact"].forEach(s=>document.getElementById(s).classList.add("hidden"));
+    document.getElementById(id).classList.remove("hidden");
+}
 
-/* ✅ Slideshow */
-let current = 0;
-const slides = document.querySelectorAll(".slide");
-setInterval(() => {
-    slides[current].classList.remove("active");
-    current = (current + 1) % slides.length;
-    slides[current].classList.add("active");
-}, 3500);
-
-/* ✅ Service Data */
+let current=0;
+const slides=document.querySelectorAll(".slide");
+function nextSlide(){slides[current].classList.remove("active");current=(current+1)%slides.length;slides[current].classList.add("active");}
+function prevSlide(){slides[current].classList.remove("active");current=(current-1+slides.length)%slides.length;slides[current].classList.add("active");}
+setInterval(nextSlide,4000);
 
 const services = {
-    typing: [
-        "CVs",
-        "Flyers",
-        "Business cards",
-        "Name tags",
-        "Certificates",
-        "Memos",
-        "Posters",
-        "Invoices",
-        "Quotes",
-        "Receipts",
-        "Programs"
-    ],
-    printing: ["Black & White Printing","Colour Printing","School Work","Forms","Documents"],
-    photos: ["ID Photos","Passport Photos","Licence Photos"],
-    scanning: ["Scan document as PDF or Image to:","USB","Cellphone","WhatsApp","Email","Laptop"],
-    lamination: ["Certificates","IDs","Important Documents"],
-    emailfax: ["Send Email","Receive Email","Send Fax","Receive Fax"],
-    internet: ["Online application for:","Jobs","Bursaries","Research"],
-    others: [
-        "SASSA Relief Grant","SARS Tax Number","UIF Signing",
-        "PSIRA Booking","DHA Booking","Driving Licence Card Renewal Bookings"
-    ]
+
+typing: [
+    "CVs, Letters and other types of documents",
+    "Invitations (Wedding, parties, unveiling, baby showers, cultural ceremonies)",
+    "Programs (Funeral, Wedding & other events)",
+    "Business cards",
+    "Tags",
+    "Certificates",
+    "Posters",
+    "Menus",
+    "Flyers",
+    "Invoices",
+    "Quotes",
+    "Receipts"
+],
+
+printing: [
+    "Printing on A4, A3, A5 & Business card size",
+    "Print in Color or Black & White from:",
+    "Email",
+    "WhatsApp",
+    "Cellphone",
+    "USB",
+    "Laptop"
+],
+
+photos: [
+    "ID Photos",
+    "Passport Photos",
+    "Licence Photos"
+],
+
+scanning: [
+    "Scan documents as PDF or Image to:",
+    "USB",
+    "Cellphone",
+    "WhatsApp",
+    "Email",
+    "Laptop"
+],
+
+lamination: [
+    "A3, A4, A5 documents",
+    "Name tags",
+    "Business cards",
+    "Certificates"
+],
+
+emailfax: [
+    "Send Email",
+    "Receive Email",
+    "Send Fax",
+    "Receive Fax"
+],
+
+internet: [
+    "Online applications",
+    "Jobs",
+    "Bursaries",
+    "Research"
+],
+
+others: [
+    "SASSA Relief Grant",
+    "SARS Tax Number",
+    "UIF Signing",
+    "PSIRA Booking",
+    "DHA Booking",
+    "Driving Licence Card Renewal"
+]
+
 };
 
 
-/* ✅ Open service */
-function openService(type) {
-    document.getElementById("service-grid").style.display = "none";
-    const box = document.getElementById("service-details");
-    box.style.display = "block";
+function openService(type){
+const grid=document.getElementById("service-grid");
+const details=document.getElementById("service-details");
+grid.style.display="none";
+details.style.display="block";
 
-    box.innerHTML = `
-        <div class="back-btn" onclick="showServiceGrid()">
-            <i class="fa-solid fa-arrow-left"></i> Back
-        </div>
-        <h2>${type.toUpperCase()} Services</h2>
-        <div class="glowing-bar"></div>
-        <ul>${services[type].map(i => `<li>${i}</li>`).join("")}</ul>
-    `;
-
-    box.scrollIntoView({ behavior: "smooth", block: "start" });
+let html="<div class='back-btn' onclick='showServiceGrid()'>← Back to Services</div><h2>"+type.toUpperCase()+"</h2><ul>";
+services[type].forEach(i=>html+="<li>"+i+"</li>");
+html+="</ul>";
+details.innerHTML=html;
 }
 
-/* ✅ Back to grid */
-function showServiceGrid() {
-    document.getElementById("service-details").style.display = "none";
-    const grid = document.getElementById("service-grid");
-    grid.style.display = "grid";
-    grid.scrollIntoView({ behavior: "smooth", block: "start" });
+function showServiceGrid(){
+document.getElementById("service-details").style.display="none";
+document.getElementById("service-grid").style.display="grid";
 }
-
-/* ✅ Home resets */
-function goHome() {
-    showServiceGrid();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-/* ✅ Fade-in on scroll */
-window.addEventListener("scroll", () => {
-    document.querySelectorAll(".fade-in").forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 80) {
-            el.classList.add("visible");
-        }
-    });
-});
-
-/* ✅ Back to Top button */
-const backTop = document.getElementById("backToTop");
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 350) backTop.classList.add("show");
-    else backTop.classList.remove("show");
-});
-backTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
 </script>
 
 </body>
 </html>
+``
