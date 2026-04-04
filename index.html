@@ -221,24 +221,71 @@ nav a:hover { color: #00eaff; }
     margin-top:25px;
 }
 
-/* ================= CONTACT ================= */
-.contact-inner {
-    text-align:center;
-    font-size:1.2rem;
+/* ================= TRADING HOURS ================= */
+.trading-hours {
+    text-align: center;
+    margin-bottom: 30px;
 }
-.contact-inner a {
-    color:#004d66;
-    font-weight:bold;
-    text-decoration:none;
+
+.trading-hours h3 {
+    color: #004d66;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
-.contact-inner a:hover { text-decoration:underline; }
+
+.trading-hours ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1.15rem;
+}
+
+.trading-hours li {
+    margin: 8px 0;
+}
+
+.trading-hours li.today {
+    font-weight: bold;
+    color: #007a99;
+}
+
+.trading-hours li.closed {
+    opacity: 0.5;
+}
+
+.open-status {
+    margin-top: 12px;
+    font-weight: bold;
+    padding: 6px 14px;
+    display: inline-block;
+    border-radius: 20px;
+    font-size: 0.95rem;
+}
+
+.open {
+    background: #25D366;
+    color: white;
+}
+
+.closed-status {
+    background: #999;
+    color: white;
+}
 
 /* ================= FOOTER ================= */
 footer {
-    background:#004d66;
-    color:white;
-    text-align:center;
-    padding:18px;
+    background: #004d66;
+    color: #ffffff;
+
+    text-align: center;
+    padding: 14px 0;        /* tighter like before */
+    font-size: 1rem;
+    line-height: 1.4;
+
+    width: 100%;
+    margin: 0;              /* ✅ stops margin collapse */
 }
 
 /* ================= WHATSAPP ================= */
@@ -355,6 +402,18 @@ footer {
 <div id="contact" class="hidden block-framed">
 <h2>Contact Us</h2>
 <div class="glossy-box">
+<div class="trading-hours">
+
+  <ul>
+    <li data-day="1">Monday – Friday: 08:00 – 17:00</li>
+    <li data-day="6">Saturday: 08:00 – 15:00</li>
+    <li data-day="0" class="closed">Sundays &amp; Public Holidays: Closed</li>
+</ul>
+
+
+    <div id="openStatus" class="open-status"></div>
+
+</div>
 <div class="contact-inner">
 <p><i class="fa fa-phone"></i> <a href="tel:0649923725">064 992 3725</a></p>
 <p><i class="fa fa-envelope"></i> <a href="mailto:mjomainternetcafe@gmail.com">mjomainternetcafe@gmail.com</a></p>
@@ -477,6 +536,46 @@ function showServiceGrid(){
 document.getElementById("service-details").style.display="none";
 document.getElementById("service-grid").style.display="grid";
 }
+/* ================= TRADING HOURS LOGIC ================= */
+(function(){
+    const now = new Date();
+    const day = now.getDay(); // 0 = Sunday
+    const hour = now.getHours();
+    const minutes = now.getMinutes();
+    const currentTime = hour + minutes / 60;
+
+    const hourItems = document.querySelectorAll(".trading-hours li");
+    hourItems.forEach(li => {
+        // Highlight Monday–Friday as today if weekday
+        if (
+            (li.dataset.day === "1" && day >= 1 && day <= 5) ||
+            Number(li.dataset.day) === day
+        ) {
+            li.classList.add("today");
+        }
+    });
+
+    const statusBox = document.getElementById("openStatus");
+    let isOpen = false;
+
+    // Monday–Friday
+    if (day >= 1 && day <= 5 && currentTime >= 8 && currentTime < 17) {
+        isOpen = true;
+    }
+
+    // Saturday & Public Holidays
+    if (day === 6 && currentTime >= 8 && currentTime < 15) {
+        isOpen = true;
+    }
+
+    if (isOpen) {
+        statusBox.textContent = "OPEN NOW";
+        statusBox.classList.add("open");
+    } else {
+        statusBox.textContent = "CLOSED";
+        statusBox.classList.add("closed-status");
+    }
+})();
 </script>
 
 </body>
