@@ -54,30 +54,128 @@ nav a:hover { color: #00eaff; }
     position: relative;
     width: 100%;
     height: 85vh;
-    background: black;
+    background: white;
     overflow: hidden;
 }
 .slide {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
+    background-size: cover;        /* ✅ fills hero, no black bars */
+    background-position: center;   /* ✅ keeps subject centered */
+    background-repeat: no-repeat;
     opacity: 0;
-    transition: opacity .6s ease;
-}
-.slide.active { opacity: 1; }
-
-
-.slide.multi {
-    display: flex;
-}
-.slide.multi img {
-    width: 60%;
-    height: 100%;
-    object-fit: cover;
+    transition: opacity .10s ease;
 }
 
+.slide.active {
+    opacity: 1;
+}
+
+/* ================= HERO FRAME BASE ================= */
+.hero-frame {
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+
+/* Keep hero content above effects */
+.slideshow-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= ANIMATED SIDE LINES ================= */
+.hero-frame::before,
+.hero-frame::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 22%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background-size: 300% 300%;
+  animation: flowLines 18s linear infinite;
+}
+
+/* LEFT SIDE */
+.hero-frame::before {
+  left: 0;
+  background-image:
+    linear-gradient(
+      120deg,
+      rgba(0,122,153,0.25),
+      rgba(255,255,255,0),
+      rgba(37,211,102,0.22),
+      rgba(255,255,255,0),
+      rgba(165,124,0,0.22)
+    );
+}
+
+/* RIGHT SIDE */
+.hero-frame::after {
+  right: 0;
+  animation-direction: reverse;
+  background-image:
+    linear-gradient(
+      240deg,
+      rgba(0,122,153,0.25),
+      rgba(255,255,255,0),
+      rgba(37,211,102,0.22),
+      rgba(255,255,255,0),
+      rgba(165,124,0,0.22)
+    );
+}
+
+/* ================= FLOW ANIMATION ================= */
+@keyframes flowLines {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* ================= HERO DECORATIVE FRAME ================= */
+.hero-frame {
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+
+/* LEFT & RIGHT DECORATIVE PANELS */
+.hero-frame::before,
+.hero-frame::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 18%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* LEFT SIDE */
+.hero-frame::before {
+  left: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0,122,153,0.18), transparent 60%),
+    radial-gradient(circle at 40% 70%, rgba(165,124,0,0.18), transparent 65%),
+    radial-gradient(circle at 20% 90%, rgba(37,211,102,0.18), transparent 60%);
+}
+
+/* RIGHT SIDE */
+.hero-frame::after {
+  right: 0;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(0,122,153,0.18), transparent 60%),
+    radial-gradient(circle at 60% 60%, rgba(165,124,0,0.18), transparent 65%),
+    radial-gradient(circle at 80% 85%, rgba(37,211,102,0.18), transparent 60%);
+}
+
+/* Make sure slideshow stays on top */
+.slideshow-container {
+  position: relative;
+  z-index: 1;
+}
 .slide-arrow {
     position: absolute;
     top: 50%;
@@ -323,6 +421,13 @@ footer {
     color: #007a99;
 }
 
+.slideshow-container .slide:nth-child(6) {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #000; /* optional, fills empty space */
+}
+
 </style>
 </head>
 
@@ -341,24 +446,26 @@ footer {
     <a onclick="showSection('contact')">Contact</a>
 </nav>
 
-<!-- HOME -->
 <div id="home">
-    <div class="slideshow-container">
-        <div class="slide active" style="background-image:url('hero1.png')"></div>
-        <div class="slide" style="background-image:url('hero2.png')"></div>
-        <div class="slide" style="background-image:url('hero3.png')"></div>
- 	<div class="slide" style="background-image:url('hero4.png')"></div>
- 	<div class="slide" style="background-image:url('hero5.png')"></div>
-	
-<div class="slide multi">
-    <img src="hero6.png" alt="">
-    <img src="hero7.png" alt="">
-    <img src="hero8.png" alt="">
-</div>
+    
+    <!-- HERO FRAME START -->
+    <div class="hero-frame">
 
-        <div class="slide-arrow left-arrow" onclick="prevSlide()">❮</div>
-        <div class="slide-arrow right-arrow" onclick="nextSlide()">❯</div>
+        <div class="slideshow-container">
+            <div class="slide active" style="background-image:url('hero1.png')"></div>
+            <div class="slide" style="background-image:url('hero2.png')"></div>
+            <div class="slide" style="background-image:url('hero3.png')"></div>
+            <div class="slide" style="background-image:url('hero4.png')"></div>
+            <div class="slide" style="background-image:url('hero5.png')"></div>
+            <div class="slide" style="background-image:url('hero6.png')"></div>
+
+            <div class="slide-arrow left-arrow" onclick="prevSlide()">❮</div>
+            <div class="slide-arrow right-arrow" onclick="nextSlide()">❯</div>
+        </div>
+
     </div>
+    <!-- HERO FRAME END -->
+
 </div>
 
 <!-- SERVICES -->
