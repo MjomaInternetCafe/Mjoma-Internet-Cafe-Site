@@ -197,6 +197,25 @@ nav a:hover { color: #00eaff; }
     margin: 40px auto;
 }
 
+
+#about.block-framed {
+    background:
+      linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)),
+      url("photo1.png");
+    background-size: cover;
+    background-position: center;
+}
+
+
+#about > h2 {
+    background: rgba(255,255,255,0.7);
+    padding: 12px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+
 /* ================= SERVICES ================= */
 .service-grid {
     display: grid;
@@ -212,9 +231,14 @@ nav a:hover { color: #00eaff; }
     position: relative;
     overflow: hidden;
 }
+
+.service-box p {
+    font-weight: 700;   /* bold */
+}
 .service-box::before {
     content:"";
-    position:absolute;
+    position:absolute;<style
+
     width:160%;
     height:160%;
     top:-25%;
@@ -234,6 +258,26 @@ nav a:hover { color: #00eaff; }
     text-align:center;
 }
 
+/* ✅ Photos service layout */
+.photos-layout{
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: left;
+  flex-wrap: wrap;
+}
+
+.photos-image{
+  width: 300px;        /* ✅ prevents giant image */
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.photos-text{
+  text-align: center;
+}
+
 .back-btn {
     background:#004d66;
     color:white;
@@ -250,6 +294,7 @@ nav a:hover { color: #00eaff; }
     padding:0;
     max-width:650px;
     margin:auto;
+    text-align: center;
 }
 
 
@@ -261,6 +306,7 @@ nav a:hover { color: #00eaff; }
 #service-details li {
     margin-bottom:10px;
     font-size:1.2rem;
+    text-align: center;
 }
 
 /* ================= SECTION DIVIDER (NEW) ================= */
@@ -279,12 +325,17 @@ nav a:hover { color: #00eaff; }
 
 /* ================= ABOUT ================= */
 .glossy-box {
-    background: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.85); /* ✅ more transparent */
     border-radius: 18px;
     padding: 50px 60px;
     text-align: center;
     box-shadow: 0 8px 30px rgba(0,0,0,0.18);
 }
+
+.glossy-box h2 {
+    margin-bottom: 25px;
+}
+
 .about-main {
     font-size: 1.45rem;
     font-weight: 700;
@@ -300,9 +351,27 @@ nav a:hover { color: #00eaff; }
     text-transform: uppercase;
     color: #004d66;
 }
+
+.glossy-box > h2 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #004d66;
+    border-bottom: 2px solid #004d66; /* ✅ underline */
+    display: inline-block;
+    padding-bottom: 6px;
+    margin-bottom: 30px;
+}
+
 .about-vision {
     font-size: 1.25rem;
 }
+
+.about-main {
+    font-family: "Arial Narrow", "Segoe UI", Arial, sans-serif;
+    font-weight: 400; /* ✅ NOT bold */
+}
+
 .slogan {
     margin-top: 40px;
     font-family: "Times New Roman", Georgia, serif;
@@ -476,9 +545,13 @@ footer {
     <div class="service-box" onclick="openService('typing')"><i class="fa fa-keyboard"></i><p>Typing</p></div>
     <div class="service-box" onclick="openService('printing')"><i class="fa fa-print"></i><p>Printing</p></div>
     <div class="service-box" onclick="openService('photos')"><i class="fa fa-camera"></i><p>Photos</p></div>
-    <div class="service-box" onclick="openService('scanning')"><i class="fa fa-scanner-image"></i><p>Scanning</p></div>
+    <div class="service-box" onclick="openService('scanning')">
+  <i class="fa fa-file-circle-check"></i>
+  <p>Scanning</p>
+</div>
     <div class="service-box" onclick="openService('lamination')"><i class="fa fa-layer-group"></i><p>Lamination</p></div>
-    <div class="service-box" onclick="openService('emailfax')"><i class="fa fa-envelope"></i><p>Email / Fax</p></div>
+    <div class="service-box" onclick="openService('emailfax')"><i class="fa fa-envelope"></i><p>Email, Fax &amp; WhatsApp</p>
+</div>
     <div class="service-box" onclick="openService('internet')"><i class="fa fa-globe"></i><p>Internet</p></div>
     <div class="service-box" onclick="openService('others')"><i class="fa fa-list-check"></i><p>Other Services</p></div>
 </div>
@@ -502,28 +575,40 @@ footer {
 </div>
 
 <!-- ABOUT -->
+<!-- ABOUT -->
 <div id="about" class="hidden block-framed">
-<h2>About Us, Vision & Mission</h2>
-<div class="glossy-box">
-    <p class="about-main">
-        Since 2014, Mjoma Internet Café provides high‑quality services to Ekangala and surrounding communities.
-    </p>
-    <p class="about-sub">
-        We support individuals, businesses and students with reliable, affordable services.
-    </p>
-    <hr>
-    <p class="about-heading">Vision</p>
-    <p class="about-vision">To be the preferred digital and communication services provider in our community.</p>
-    <hr>
-    <p class="about-heading">Mission</p>
-    <ul style="list-style:none;padding:0">
-        <li>✔ Deliver fast and reliable service</li>
-        <li>✔ Assist our community with digital services</li>
-    </ul>
-    <p class="slogan">We are proud to serve our community</p>
-</div>
-</div>
 
+  <div class="glossy-box">
+
+      <h2>About Us, Vision & Mission</h2>
+
+      <p class="about-main">
+          Since 2014, Mjoma Internet Café provides high‑quality services to Ekangala and surrounding communities.
+      </p>
+
+      <p class="about-sub">
+          We support individuals, businesses and students with reliable, affordable services.
+      </p>
+
+      <hr>
+
+      <p class="about-heading">Vision</p>
+      <p class="about-vision">
+          To be the preferred digital and communication services provider in our community.
+      </p>
+
+      <hr>
+
+      <p class="about-heading">Mission</p>
+      <ul style="list-style:none;padding:0">
+          <li>✔ Deliver fast and reliable service</li>
+          <li>✔ Assist our community with digital services</li>
+      </ul>
+
+      <p class="slogan">We are proud to serve our community</p>
+
+  </div>
+</div>
 <!-- CONTACT -->
 <div id="contact" class="hidden block-framed">
 <h2>Contact Us</h2>
@@ -560,9 +645,18 @@ footer {
 </a>
 
 <script>
+
 function showSection(id){
-    ["home","services","about","contact"].forEach(s=>document.getElementById(s).classList.add("hidden"));
+    ["home","services","about","contact"].forEach(s =>
+        document.getElementById(s).classList.add("hidden")
+    );
+
     document.getElementById(id).classList.remove("hidden");
+
+    // ✅ IMPORTANT: If going back to Services, always show all services
+    if(id === "services"){
+        showServiceGrid();
+    }
 }
 
 let current=0;
@@ -604,6 +698,7 @@ photos: [
     "Licence Photos"
 ],
 
+
 scanning: [
     "Scan documents as PDF or Image to:",
     "USB",
@@ -617,46 +712,105 @@ lamination: [
     "A3, A4, A5 documents",
     "Name tags",
     "Business cards",
-    "Certificates"
+    "Certificates",
+    "Posters & Menus"
 ],
+
 
 emailfax: [
-    "Send Email",
-    "Receive Email",
-    "Send Fax",
-    "Receive Fax"
-],
+  "Send or receive Email",
+  "Send or receive WhatsApp",
+  "Send or receive Fax"
+]
+,
 
 internet: [
-    "Online applications",
+    "Online Application for:",
+    "Students to Institutions of higher Education",
     "Jobs",
     "Bursaries",
-    "Research"
+    "Online Research"
 ],
 
 others: [
-    "SASSA Relief Grant",
-    "SARS Tax Number",
+    "SASSA Relief Grant Application or Update",
+    "SARS Tax Number application or Retrieve",
     "UIF Signing",
     "PSIRA Booking",
-    "DHA Booking",
-    "Driving Licence Card Renewal"
+    "Smart ID Booking at DHA",
+    "Booking for Learners, PrDP & Card Renewal"
 ]
 
 };
 
-
 function openService(type){
-const grid=document.getElementById("service-grid");
-const details=document.getElementById("service-details");
-grid.style.display="none";
-details.style.display="block";
+  const grid = document.getElementById("service-grid");
+  const details = document.getElementById("service-details");
+  grid.style.display = "none";
+  details.style.display = "block";
 
-let html="<div class='back-btn' onclick='showServiceGrid()'>← Back to Services</div><h2>"+type.toUpperCase()+"</h2><ul>";
-services[type].forEach(i=>html+="<li>"+i+"</li>");
-html+="</ul>";
-details.innerHTML=html;
+  const headings = {
+    typing: "Typing",
+    printing: "Printing",
+    photos: "Photos",
+    scanning: "Scanning",
+    lamination: "Lamination",
+    emailfax: "Email, Fax & WhatsApp",
+    internet: "Internet",
+    others: "Other Services"
+  };
+
+  const headingText = headings[type] || type.toUpperCase();
+
+  let html =
+    "<div class='back-btn' onclick='showServiceGrid()'>← Back to Services</div>" +
+    "<h2>" + headingText + "</h2>";
+
+
+if(type === "photos"){
+  html +=
+    "<div class='photos-layout'>" +
+      "<img src='photos.png' class='photos-image' alt='Photos'>" +
+      "<div class='photos-text'>";
 }
+
+if(type === "scanning"){
+  const first = services[type][0]; // "Scan documents as PDF or Image to:"
+  html += "<p style='font-size:1.25rem;font-weight:700;margin:10px 0 18px;color:#004d66;'>" + first + "</p>";
+  html += "<ul>";
+  services[type].slice(1).forEach(i => html += "<li>" + i + "</li>");
+  html += "</ul>";
+
+
+if(type === "photos"){
+  html += "</div></div>";
+}
+
+  details.innerHTML = html;
+  return;
+}
+
+
+// ✅ Internet: first line as middle text (no tick), rest as list
+  if(type === "internet"){
+    const first = services[type][0];
+    html += "<p style='font-size:1.25rem;font-weight:700;margin:10px 0 18px;color:#004d66;'>" + first + "</p>";
+    html += "<ul>";
+    services[type].slice(1).forEach(i => html += "<li>" + i + "</li>");
+    html += "</ul>";
+    details.innerHTML = html;
+    return;
+  }
+
+
+  // Default: list with ticks
+  html += "<ul>";
+  services[type].forEach(i => html += "<li>" + i + "</li>");
+  html += "</ul>";
+
+  details.innerHTML = html;
+}
+
 
 function showServiceGrid(){
 document.getElementById("service-details").style.display="none";
